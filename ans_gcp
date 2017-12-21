@@ -1,0 +1,18 @@
+gce                                       create or terminate GCE instances                                                                                               
+gce_eip                                   Create or Destroy Global or Regional External IP addresses.                                                                     
+gce_img                                   utilize GCE image resources                                                                                                     
+gce_instance_template                     create or destroy instance templates of Compute Engine of GCP.                                                                  
+gce_labels                                Create, Update or Destory GCE Labels.                                                                                           
+gce_lb                                    create/destroy GCE load-balancer resources                                                                                      
+gce_mig                                   Create, Update or Destroy a Managed Instance Group (MIG).                                                                       
+gce_net                                   create/destroy GCE networks and firewall rules                                                                                  
+gce_pd                                    utilize GCE persistent disk resources                                                                                           
+gce_snapshot                              Create or destroy snapshots for GCE storage volumes                                                                             
+gce_tag                                   add or remove tag(s) to/from GCE instances                                                                                      
+gcp_backend_service                       Create or Destroy a Backend Service.                                                                                            
+gcp_forwarding_rule                       Create, Update or Destroy a Forwarding_Rule.                                                                                    
+gcp_healthcheck                           Create, Update or Destroy a Healthcheck.                                                                                        
+gcp_target_proxy                          Create, Update or Destroy a Target_Proxy.                                                                                       
+gcp_url_map                               Create, Update or Destory a Url_Map.                                                                                            
+gcpubsub                                  Create and Delete Topics/Subscriptions, Publish and pull messages on PubSub.                                                    
+gcpubsub_facts                            List Topics/Subscriptions and Messages from Google PubSub.                                                                      
