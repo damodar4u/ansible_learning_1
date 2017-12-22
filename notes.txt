@@ -37,8 +37,7 @@ ansible -i hosts 4 -m ping
 
 ansible local -m setup 
 
-
-
+ansible local -m setup -a 'filter=ans*ipv4*'
 
 
 
