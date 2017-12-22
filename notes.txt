@@ -31,7 +31,9 @@ roles //
 
 
 
+ansible all --list-hosts
 
+ansible -i hosts 4 -m ping
 
 
 
