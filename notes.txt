@@ -1,0 +1,43 @@
+ansible-doc -l
+
+create a test account on 2 modes
+
+sudo adduser test
+
+cd /home/test/
+
+sudo mkdir playbooks
+
+sudo chown test:test playbooks/
+
+
+exchnage  keys between systems as test user
+
+ssh-keygen 
+
+copy the pub key between systems
+
+add public  keys of each instance  to other going to google cloud console.
+
+any ansible server can act as control  server and as a client provided control server public key is available in authorised file on 
+the client server
+
+
+ansible structure
+/etc/ansible
+ansible.cfg
+hosts  // contains  hosts that will be managed using this control server , contains groups of hosts that can be refrenced  by group
+roles // 
+
+
+
+
+
+
+
+
+
+
+
+
+
