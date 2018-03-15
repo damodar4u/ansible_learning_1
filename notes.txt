@@ -296,7 +296,7 @@ By default handler is not going to get executed unless it is called using notify
 
 we can have notify mentioned serveral times in multiple tasks, they all get aggregated and will be executed once for each handler at the end of the play.
 
-
+notify gets executed only if there is a change in state
 
 
 
