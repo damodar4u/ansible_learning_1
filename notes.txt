@@ -300,6 +300,10 @@ notify gets executed only if there is a change in state
 
 
 
+copy
+file
+template
+infile
 
 
 
