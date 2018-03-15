@@ -39,6 +39,196 @@ ansible local -m setup
 
 ansible local -m setup -a 'filter=ans*ipv4*'
 
+infrastructure as a code 
+
+prefer local inventory file to system  /etc/ansible/hosts
+
+store all inventory files and playbooks in github
+
+vagrant ssh control
+
+vagrant@vagrant-ubuntu-trusty-64:~/work/ansible$ cat dev
+[loadbalancer]
+lb01
+
+
+[webserver]
+app01
+app02
+
+[database]
+db01
+
+[control]
+control ansible_connection=local
+
+
+vagrant@vagrant-ubuntu-trusty-64:~/work/ansible$ ansible -i dev --list-hosts all
+ [WARNING]: Found both group and host with same name: control
+
+  hosts (5):
+    control 
+    db01
+    app01
+    app02
+    lb01
+    
+    
+
+
+by default control hosts try to ssh into itself, it is unnecssary, use ansible_connection=local parameter to stop ssh.
+
+
+order of precedence for inventory file ( local takes precedence over global inventory file which is by default /etc/ansible/hosts defined inside /etc/ansible/ansible.cfg)
+
+
+local ansible.cfg takes precendence over system configuration file /etc/ansible/ansible.cfg
+
+vagrant@vagrant-ubuntu-trusty-64:~/work/ansible$ cat ansible.cfg
+[defaults]
+inventory = ./dev
+
+vagrant@vagrant-ubuntu-trusty-64:~/work/ansible$ ansible --list-hosts all
+ [WARNING]: Found both group and host with same name: control
+
+  hosts (5):
+    control
+    db01
+    app01
+    app02
+    lb01
+    
+ 
+ Host selection
+ select individual host from inventory, or group by role, or pattern 
+ 
+ vagrant@vagrant-ubuntu-trusty-64:~/work/ansible$ ansible --list-hosts "*"
+ [WARNING]: Found both group and host with same name: control
+
+  hosts (5):
+    control
+    db01
+    app01
+    app02
+    lb01
+    
+    
+    vagrant@vagrant-ubuntu-trusty-64:~/work/ansible$ ansible --list-hosts loadbalancer
+ [WARNING]: Found both group and host with same name: control
+
+  hosts (1):
+    lb01
+    
+    vagrant@vagrant-ubuntu-trusty-64:~/work/ansible$ ansible --list-hosts db01
+ [WARNING]: Found both group and host with same name: control
+
+  hosts (1):
+    db01
+    
+    
+    
+    vagrant@vagrant-ubuntu-trusty-64:~/work/ansible$ ansible --list-hosts "app0*"
+ [WARNING]: Found both group and host with same name: control
+
+  hosts (2):
+    app01
+    app02
+    
+    
+    vagrant@vagrant-ubuntu-trusty-64:~/work/ansible$ ansible --list-hosts database:webserver
+ [WARNING]: Found both group and host with same name: control
+
+  hosts (3):
+    db01
+    app01
+    app02
+    
+    or 
+    vagrant@vagrant-ubuntu-trusty-64:~/work/ansible$ ansible --list-hosts database,webserver
+ [WARNING]: Found both group and host with same name: control
+
+  hosts (3):
+    db01
+    app01
+    app02
+    
+ vagrant@vagrant-ubuntu-trusty-64:~/work/ansible$ ansible --list-hosts webserver[0]
+ [WARNING]: Found both group and host with same name: control
+
+  hosts (1):
+    app01
+    
+ 
+ 
+ vagrant@vagrant-ubuntu-trusty-64:~/work/ansible$ ansible --list-hosts \!control
+ [WARNING]: Found both group and host with same name: control
+
+  hosts (4):
+    db01
+    app01
+    app02
+    lb01
+
+Tasks . (module + args to module)
+
+
+vagrant@vagrant-ubuntu-trusty-64:~/work/ansible$ ansible -m ping  all
+ [WARNING]: Found both group and host with same name: control
+
+control | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+lb01 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+app02 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+app01 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+db01 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+
+vagrant@vagrant-ubuntu-trusty-64:~/work/ansible$ ansible -m command -a "hostname" all
+ [WARNING]: Found both group and host with same name: control
+
+control | SUCCESS | rc=0 >>
+vagrant-ubuntu-trusty-64
+
+db01 | SUCCESS | rc=0 >>
+vagrant-ubuntu-trusty-64
+
+lb01 | SUCCESS | rc=0 >>
+vagrant-ubuntu-trusty-64
+
+app01 | SUCCESS | rc=0 >>
+vagrant-ubuntu-trusty-64
+
+app02 | SUCCESS | rc=0 >>
+vagrant-ubuntu-trusty-64
+
+vagrant@vagrant-ubuntu-trusty-64:~/work/ansible$ ansible -a "hostname" all   (same as)  ansible -m command -a "hostname" all
+as command is default module 
+
+Modules
+
+docs.ansible.com
+checks.bankofamerica.com/caccp/productlist.jsp
+
+
+Play (set of target hosts and tasks to execute against the target hosts)
+
+
+
+
+
 
 
 
