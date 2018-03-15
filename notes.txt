@@ -226,6 +226,73 @@ checks.bankofamerica.com/caccp/productlist.jsp
 Play (set of target hosts and tasks to execute against the target hosts)
 
 
+vagrant@vagrant-ubuntu-trusty-64:~/work/ansible$ ansible-playbook playbooks/hostname.yaml
+ [WARNING]: Found both group and host with same name: control
+
+
+PLAY [all] ******************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************
+ok: [control]
+ok: [app01]
+ok: [db01]
+ok: [app02]
+ok: [lb01]
+
+TASK [get server hostname] **************************************************************************
+changed: [app01]
+changed: [app02]
+changed: [db01]
+changed: [lb01]
+changed: [control]
+
+PLAY RECAP ******************************************************************************************
+app01                      : ok=2    changed=1    unreachable=0    failed=0
+app02                      : ok=2    changed=1    unreachable=0    failed=0
+control                    : ok=2    changed=1    unreachable=0    failed=0
+db01                       : ok=2    changed=1    unreachable=0    failed=0
+lb01                       : ok=2    changed=1    unreachable=0    failed=0
+
+
+4 pillars
+
+pacakages required
+service handler
+system configuration
+config files for app
+
+
+Packages
+
+
+vagrant@vagrant-ubuntu-trusty-64:~/work/ansible/playbooks$ cat loadbalancer.yaml
+---
+  - hosts: loadbalancer
+    become: true
+    tasks:
+      - name: install nginx
+        apt: name=nginx state=present update_cache=yes
+        
+
+
+we use jinja templating engine in variable substitution and in templates
+
+vagrant@vagrant-ubuntu-trusty-64:~/work/ansible$ cat playbooks/webserver.yaml
+---
+  - hosts: webserver
+    become: true
+    tasks:
+      - name: install apache2 server
+        apt: name={{item}} state=present update_cache=yes
+        with_items:
+          - apache2
+          - libapache2-mod-wsgi
+          - python-pip
+          - python-virtualenv
+          
+
+
+
 
 
 
