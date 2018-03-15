@@ -292,6 +292,10 @@ vagrant@vagrant-ubuntu-trusty-64:~/work/ansible$ cat playbooks/webserver.yaml
           
 
 
+By default handler is not going to get executed unless it is called using notify
+
+we can have notify mentioned serveral times in multiple tasks, they all get aggregated and will be executed once for each handler at the end of the play.
+
 
 
 
