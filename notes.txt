@@ -323,7 +323,15 @@ when
         with_items: "{{app_index.results}}"
 
         
-        
+
+vagrant@vagrant-ubuntu-trusty-64:~/work/ansible/roles$ ansible-galaxy init control
+
+
+vagrant@vagrant-ubuntu-trusty-64:~/work/ansible/roles/control$ ls
+defaults  files  handlers  meta  README.md  tasks  templates  tests  vars
+
+
+
 
 
 
