@@ -332,6 +332,11 @@ defaults  files  handlers  meta  README.md  tasks  templates  tests  vars
 
 site.yml contains playbooks inside paybook using include multi-functional key word
 
+collect facts using setup module
+ansible -m setup db01
+
+
+
 
 
 
