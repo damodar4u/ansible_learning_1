@@ -336,6 +336,10 @@ collect facts using setup module
 ansible -m setup db01
 
 
+variables
+
+facts
+defaults
 
 
 
