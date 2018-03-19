@@ -340,7 +340,8 @@ variables
 
 facts
 defaults
-
+vars
+with_dict
 
 
 
