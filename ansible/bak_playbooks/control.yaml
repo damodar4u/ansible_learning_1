@@ -1,0 +1,11 @@
+---
+  - hosts: control
+    become: true
+    tasks:
+      - name: install packages on control webserver
+        apt: name={{item}} state=present update_cache=yes
+        with_items:
+          - locate
+          - python-pip
+          - python-httplib2
+
