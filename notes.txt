@@ -343,6 +343,13 @@ defaults
 vars
 with_dict
 
+shell
+register
+with_items
+when
+
+
+
 
 
 
