@@ -362,3 +362,8 @@ chmod 0600 ~/.vault_pass.txt
 
 ansible-galaxy is an online repo for roles where others can contribute playbooks.
 
+galaxy.ansible.com
+
+ansible-galaxy install username.rolename
+
+gather_facts false
