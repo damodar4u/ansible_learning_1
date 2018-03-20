@@ -354,7 +354,9 @@ ansible vault create vault
 ansible vault edit vault
 
 
-
+vagrant@vagrant-ubuntu-trusty-64:~/work/ansible/playbooks/group_vars/all$ echo "password" > ~/.vault_pass.txt
+vagrant@vagrant-ubuntu-trusty-64:~/work/ansible/playbooks/group_vars/all$ chmod 0600 !$
+chmod 0600 ~/.vault_pass.txt
 
 
 
