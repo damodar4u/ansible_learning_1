@@ -348,6 +348,13 @@ register
 with_items
 when
 
+/home/vagrant/work/ansible/playbooks/group_vars/all
+export EDITOR=vi
+ansible vault create vault
+ansible vault edit vault
+
+
+
 
 
 
