@@ -254,7 +254,7 @@ db01                       : ok=2    changed=1    unreachable=0    failed=0
 lb01                       : ok=2    changed=1    unreachable=0    failed=0
 
 
-4 pillars
+4 pillars (packages, services, sys config, app config)
 
 pacakages required
 service handler
@@ -369,3 +369,51 @@ ansible-galaxy install username.rolename
 gather_facts false
 
 skipping unnecessary cache update using cache_vaid_time for apt module
+
+use limit command whenever necessary to limit the chnages to nodes in the inventory when executing tasks in the site.yaml
+
+ansible-playook site.yaml --limit "app01"
+
+limiting execution by tasks using tags
+--list-tags
+
+tags: [ 'packages' ]
+
+ansible-playook site.yaml --tags "packages"
+
+or 
+
+negatition of skip this tag and execute the rest of plays
+
+ansible-playook site.yaml --skip-tags "packages"
+
+tags are flexible, we can add any number of tags to a task.
+
+idempotence chnaged_when, failed_when 
+
+accelarated mode for ssh
+
+jump to specific taks 
+- list-tasks
+- step
+- start-at-task
+
+collecting unreachable failed hosts, ansible tracks failed hosts under .retry
+site.retry
+ansible-playbook site.yaml --limit @/home/../../site.retry
+
+
+syntax check and dry run
+
+
+
+
+
+
+
+
+
+
+
+
+
