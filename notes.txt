@@ -404,6 +404,18 @@ ansible-playbook site.yaml --limit @/home/../../site.retry
 
 
 syntax check and dry run
+ansible-playbook --syntax-check site.yaml
+ansible-playbook --check site.yaml
+
+
+debug module
+debug: var=active.stdout_lines
+
+
+
+
+
+
 
 
 
