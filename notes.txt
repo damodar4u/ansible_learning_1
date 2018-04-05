@@ -414,6 +414,10 @@ debug: var=active.stdout_lines
 
 
 
+group_vars
+
+host_vars
+
 
 
 
